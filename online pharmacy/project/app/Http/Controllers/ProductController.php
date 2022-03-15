@@ -114,8 +114,10 @@ class ProductController extends Controller
         {
             
             $id=$req->id;
+            $product=product::where("id",$id)->first();
+            
             $cart=[];
-            $product=array('p_id'=>$id,'p_quantity'=>1,);
+            $product=array('p_id'=>$id,'p_quantity'=>1,'p_name'=>$product->name,'p_price'=>$product->price);
     
             if($req->session()->has('cart')){
                 $cart=json_decode($req->session()->get('cart'));
